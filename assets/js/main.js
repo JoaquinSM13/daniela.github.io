@@ -46,7 +46,7 @@
   // Render posts on home
   const blogList = document.getElementById('blog-list');
   if (blogList) {
-    fetch('posts/posts.json', { cache: 'no-store' })
+    fetch(BASE + 'posts/posts.json', { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
       .then(posts => {
         // Helpers to avoid UTC shift and format in Spanish
@@ -58,6 +58,12 @@
           const date = parseLocalDate(yyyyMmDd);
           return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: '2-digit' });
         };
+        const resolveAssetUrl = (url) => {
+          if (!url) return url;
+          // Normalize to BASE + path without leading ../ or /
+          const normalized = url.replace(/^\.\.\//, '').replace(/^\//, '');
+          return BASE + normalized;
+        };
         // Orden por fecha descendente
         posts.sort((a,b) => new Date(b.date) - new Date(a.date));
         const frag = document.createDocumentFragment();
@@ -67,7 +73,7 @@
           card.className = 'blog-card';
           card.innerHTML = `
             <img
-              src="${p.image}"
+              src="${resolveAssetUrl(p.image)}"
               alt="${p.imageAlt || p.title}"
               class="blog-image"
               loading="lazy"
@@ -81,7 +87,7 @@
               </div>
               <h3 class="blog-title">${p.title}</h3>
               <p class="blog-excerpt">${p.excerpt}</p>
-              <a class="read-more" href="posts/${p.slug}.html" aria-label="Leer ${p.title}">Leer más</a>
+              <a class="read-more" href="${BASE}posts/${p.slug}.html" aria-label="Leer ${p.title}">Leer más</a>
             </div>`;
           frag.appendChild(card);
         });

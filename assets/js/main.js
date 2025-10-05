@@ -28,6 +28,20 @@
     ]);
   };
 
+  const fixHeaderLinks = () => {
+    const headerEl = document.querySelector('header');
+    if (!headerEl) return;
+    // Logo points to BASE
+    const logo = headerEl.querySelector('a.logo');
+    if (logo) logo.setAttribute('href', BASE);
+    // Menu anchors to BASE + #id
+    const map = [ ['#home','home'], ['#about','about'], ['#blog','blog'] ];
+    map.forEach(([selector, id]) => {
+      const link = headerEl.querySelector(`a[href="/${selector}"]`) || headerEl.querySelector(`a[href="${selector}"]`);
+      if (link) link.setAttribute('href', `${BASE}${selector}`);
+    });
+  };
+
   // Smooth scrolling
   const attachSmoothScroll = () => {
     const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -117,5 +131,5 @@
     head.appendChild(link);
   };
 
-  loadPartials().then(() => { ensureFavicon(); attachSmoothScroll(); }).catch(() => { ensureFavicon(); attachSmoothScroll(); });
+  loadPartials().then(() => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); }).catch(() => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); });
 })();

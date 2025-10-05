@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Daniela San Martín</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <meta name="description" content="Blog de Daniela San Martín: experiencias, fe y vida a los 15 años."/>
+  <meta property="og:title" content="Daniela San Martín"/>
+  <meta property="og:description" content="Experiencias, fe y vida a los 15 años."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:image" content="assets/images/site/author.jpg"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+
+  <!-- (Recomendado por cabecera del servidor) CSP/HSTS/etc. -->
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to content</a>
+
+  <header></header>
+
+  <section class="hero" id="home" aria-label="Hero">
+    <div class="hero-content">
+      <h1>Yo y el mundo de Hoy</h1>
+    </div>
+  </section>
+
+  <main class="container" id="main">
+    <!-- About -->
+    <section class="about-section" id="about" aria-labelledby="about-title">
+      <div class="about-header">
+        <h2 id="about-title">Sobre mi</h2>
+      </div>
+      <div class="about-content">
+        <div class="about-image">
+          <img src="assets/images/site/author.jpg" alt="Portrait representing the author" loading="lazy" width="400" height="400"/>
+        </div>
+        <div class="about-text">
+          <p>
+            Soy Daniela San Martín, tengo 15 años y aprendí a ver la vida desde la fe y la esperanza. A través de este blog comparto mis pensamientos, luchas, sueños y experiencias con Dios, con la ilusión de que cada palabra pueda inspirar a alguien más a no rendirse, a creer y a valorar las pequeñas cosas de cada día.
+          </p>
+          <p>
+            Amo la música y me encanta alabar a Dios, porque en cada melodía encuentro fuerza, alegría y paz.          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Blog list (se genera desde posts/posts.json) -->
+    <section id="blog" aria-labelledby="blog-title">
+      <h2 class="section-title" id="blog-title">Últimos posts</h2>
+      <div id="blog-list" class="blog-list" aria-live="polite"></div>
+      <noscript>
+        <p>Habilita JavaScript para ver los últimos posts.</p>
+      </noscript>
+    </section>
+  </main>
+
+  <footer></footer>
+
+  <!-- Font Awesome (opcional, puedes auto-hospedar) -->
+  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+  <script src="assets/js/main.js" defer></script>
+</body>
+</html>

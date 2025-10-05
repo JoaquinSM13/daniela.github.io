@@ -1,0 +1,84 @@
+[
+    {
+      "slug": "un-nuevo-comienzo",
+      "title": "Un nuevo comienzo",
+      "date": "2013-01-21",
+      "readMins": 5,
+      "excerpt": "Hace 20 días que comenzó este nuevo año. Estoy con muchas expectativas y con ganas de saber qué es lo que traerá consigo.",
+      "image": "../assets/images/blog/un-nuevo-comienzo.jpg",
+      "imageAlt": "Un nuevo comienzo"
+    },
+    {
+      "slug": "tibios-o-calientes",
+      "title": "Tibios o calientes",
+      "date": "2013-01-23",
+      "readMins": 4,
+      "excerpt": "Ayer estaba pensando... En la hora del devocional tratamos sobre ser tibios o calientes.",
+      "image": "../assets/images/blog/tibios-o-calientes.jpg",
+      "imageAlt": "Tibios o calientes"
+    },
+    {
+      "slug": "dias-malos",
+      "title": "Días malos",
+      "date": "2013-01-24",
+      "readMins": 2,
+      "excerpt": "Hoy no es un buen día. Tengo días buenos y malos, hoy es uno de estos donde lamentablemente no me siento muy bien...",
+      "image": "../assets/images/blog/dias-malos.jpg",
+      "imageAlt": "Días malos"
+    },
+    {
+      "slug": "una-semana-muriendo-a-mi-yo",
+      "title": "Una semana muriendo a mi yo",
+      "date": "2013-01-30",
+      "readMins": 8,
+      "excerpt": "Desde la última entrada ésta ha sido una semana muy difícil. Una semana llena de pruebas y bendiciones, una semana que ha probado mi carácter, mi paciencia y está tratando de mi morir a mi yo interior...",
+      "image": "../assets/images/blog/una-semana-muriendo-a-mi-yo.jpg",
+      "imageAlt": "Una semana muriendo a mi yo"
+    },
+    {
+      "slug": "la-prueba",
+      "title": "La Prueba",
+      "date": "2013-02-06",
+      "readMins": 4,
+      "excerpt": "Una recaída me llevó de vuelta a la clínica. Entre altos y bajos, Dios me habló, me dio paz y pude terminar el tratamiento con esperanza para el 16.",
+      "image": "../assets/images/blog/la-prueba.jpg",
+      "imageAlt": "La Prueba"
+    },
+    {
+      "slug": "mis-xv",
+      "title": "MIS XV",
+      "date": "2013-02-17",
+      "readMins": 6,
+      "excerpt": "Mi gran noche: la casa, la limosina, el vestido y cada detalle fueron respuesta de Dios. Un sueño cumplido y un corazón agradecido.",
+      "image": "../assets/images/blog/mis-xv.jpg",
+      "imageAlt": "MIS XV"
+    },
+    {
+      "slug": "la-importancia-de-valorar",
+      "title": "La importancia de valorar",
+      "date": "2013-02-27",
+      "readMins": 6,
+      "excerpt": "Valorar lo que tenemos mientras lo tenemos: la salud, la escuela, la familia, la comida. Un llamado a agradecer antes de lamentar.",
+      "image": "../assets/images/blog/la-importancia-de-valorar.jpg",
+      "imageAlt": "La importancia de valorar"
+    },
+    {
+      "slug": "salmos-91-salmo-de-proteccion",
+      "title": "Salmos 91: salmo de protección",
+      "date": "2013-02-24",
+      "readMins": 5,
+      "excerpt": "La historia de Peggy Joyce y cómo el Salmo 91 transformó temor en fe. Un recordatorio de protección y oración constante.",
+      "image": "../assets/images/blog/salmos-91-salmo-de-proteccion.jpg",
+      "imageAlt": "Salmos 91: salmo de protección"
+    },
+    {
+      "slug": "todo-lo-puedo-en-cristo-que-me-fortalece",
+      "title": "Todo lo puedo en Cristo que me fortalece",
+      "date": "2013-03-04",
+      "readMins": 3,
+      "excerpt": "Un día de clases que comenzó con fe y terminó en gratitud. Dios me dio fuerzas para lograr lo que creía imposible: volver al colegio.",
+      "image": "../assets/images/blog/todo-lo-puedo-en-cristo-que-me-fortalece.jpg",
+      "imageAlt": "Todo lo puedo en Cristo que me fortalece"  
+    }      
+  ]
+  

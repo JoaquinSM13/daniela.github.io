@@ -13,6 +13,16 @@
   };
   const BASE = getBasePath();
 
+  // ---------- Helpers compartidos ----------
+  const parseLocalDate = (yyyyMmDd) => {
+    const [y, m, d] = yyyyMmDd.split('-').map(Number);
+    return new Date(y, m - 1, d);
+  };
+  const formatDateEs = (yyyyMmDd) => {
+    const date = parseLocalDate(yyyyMmDd);
+    return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: '2-digit' });
+  };
+
   // Simple partials loader for header/footer
   const loadPartials = () => {
     const insert = (selector, url) => {
@@ -34,11 +44,10 @@
     // Logo points to BASE
     const logo = headerEl.querySelector('a.logo');
     if (logo) logo.setAttribute('href', BASE);
-    // Menu anchors to BASE + #id
-    const map = [ ['#home','home'], ['#about','about'], ['#blog','blog'] ];
-    map.forEach(([selector, id]) => {
-      const link = headerEl.querySelector(`a[href="/${selector}"]`) || headerEl.querySelector(`a[href="${selector}"]`);
-      if (link) link.setAttribute('href', `${BASE}${selector}`);
+    // Menu anchors (ahora incluye #videos)
+    ['home','about','blog','videos'].forEach(id => {
+      const sel = `a[href="/#${id}"], a[href="#${id}"]`;
+      headerEl.querySelectorAll(sel).forEach(link => link.setAttribute('href', `${BASE}#${id}`));
     });
   };
 
@@ -57,30 +66,21 @@
     });
   };
 
-  // Render posts on home
+  // ---------- Posts ----------
   const blogList = document.getElementById('blog-list');
   if (blogList) {
     fetch(BASE + 'posts/posts.json', { cache: 'no-store' })
       .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
       .then(posts => {
-        // Helpers to avoid UTC shift and format in Spanish
-        const parseLocalDate = (yyyyMmDd) => {
-          const [y, m, d] = yyyyMmDd.split('-').map(Number);
-          return new Date(y, m - 1, d);
-        };
-        const formatDateEs = (yyyyMmDd) => {
-          const date = parseLocalDate(yyyyMmDd);
-          return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: '2-digit' });
-        };
-        const resolveAssetUrl = (url) => {
-          if (!url) return url;
-          // Normalize to BASE + path without leading ../ or /
-          const normalized = url.replace(/^\.\.\//, '').replace(/^\//, '');
-          return BASE + normalized;
-        };
         // Orden por fecha descendente
         posts.sort((a,b) => new Date(b.date) - new Date(a.date));
         const frag = document.createDocumentFragment();
+
+        const resolveAssetUrl = (url) => {
+          if (!url) return url;
+          const normalized = url.replace(/^\.\.\//, '').replace(/^\//, '');
+          return BASE + normalized;
+        };
 
         posts.forEach(p => {
           const card = document.createElement('article');
@@ -112,8 +112,52 @@
         blogList.innerHTML = `<p>No se pudieron cargar los posts. Por favor, actualice.</p>`;
       });
   }
-  
-  // Initialize
+
+  // ---------- Videos ----------
+  const videoList = document.getElementById('video-list');
+  if (videoList) {
+    fetch(BASE + 'videos/videos.json', { cache: 'no-store' })
+      .then(r => r.ok ? r.json() : Promise.reject(r.statusText))
+      .then(videos => {
+        // Orden por fecha desc
+        videos.sort((a,b) => new Date(b.date) - new Date(a.date));
+        const frag = document.createDocumentFragment();
+
+        const ytThumb = (id) => `https://img.youtube.com/vi/${id}/hqdefault.jpg`;
+        const ytWatch = (id) => `https://www.youtube.com/watch?v=${id}`;
+
+        videos.forEach(v => {
+          const card = document.createElement('article');
+          card.className = 'blog-card';
+          card.innerHTML = `
+            <img
+              src="${ytThumb(v.youtubeId)}"
+              alt="${v.imageAlt || v.title}"
+              class="blog-image"
+              loading="lazy"
+              decoding="async"
+              referrerpolicy="no-referrer"
+            >
+            <div class="blog-content">
+              <div class="blog-meta">
+                <span><i class="far fa-calendar" aria-hidden="true"></i> ${formatDateEs(v.date)}</span>
+                <span><i class="far fa-clock" aria-hidden="true"></i> ${v.duration || ''}</span>
+              </div>
+              <h3 class="blog-title">${v.title}</h3>
+              <p class="blog-excerpt">${v.excerpt || ''}</p>
+              <a class="read-more" href="${ytWatch(v.youtubeId)}" target="_blank" rel="noopener noreferrer" aria-label="Ver ${v.title} en YouTube">Ver en YouTube</a>
+            </div>`;
+          frag.appendChild(card);
+        });
+
+        videoList.appendChild(frag);
+      })
+      .catch(() => {
+        videoList.innerHTML = `<p>No se pudieron cargar los videos. Por favor, actualice.</p>`;
+      });
+  }
+
+  // ---------- Initialize ----------
   const ensureFavicon = () => {
     const head = document.head || document.getElementsByTagName('head')[0];
     if (!head) return;
@@ -131,5 +175,8 @@
     head.appendChild(link);
   };
 
-  loadPartials().then(() => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); }).catch(() => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); });
+  loadPartials()
+    .then(() => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); })
+    .catch(()  => { fixHeaderLinks(); ensureFavicon(); attachSmoothScroll(); });
+
 })();

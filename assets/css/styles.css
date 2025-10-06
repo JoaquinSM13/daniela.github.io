@@ -97,10 +97,48 @@ footer{background:linear-gradient(135deg,var(--jade-dark) 0%,var(--jade-medium) 
   #videos { margin-top: 4rem; }
 }
 
-.logo-icon {
-  width: 35px;
-  height: 35px;
-  margin-right: 10px;
-  vertical-align: middle;
-  filter: invert(10%) sepia(10%) saturate(10%);
+/* === Equal-height cards + sticky button at bottom === */
+.blog-card{
+  display: flex;              /* tarjeta en columna */
+  flex-direction: column;
+  height: 100%;
+}
+
+.blog-image{
+  width: 100%;
+  aspect-ratio: 16 / 9;       /* miniatura uniforme */
+  object-fit: cover;
+  height: auto;               /* reemplaza alturas fijas previas */
+}
+
+.blog-content{
+  display: flex;              /* contenido en columna */
+  flex-direction: column;
+  flex: 1;                    /* ocupa el alto restante de la tarjeta */
+}
+
+/* Limitar líneas para uniformar alturas entre tarjetas */
+.blog-title{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;      /* título a 2 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.blog-excerpt{
+  display: -webkit-box;
+  -webkit-line-clamp: 3;      /* extracto a 3 líneas */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+/* Empuja el botón al fondo del contenedor */
+.read-more{
+  margin-top: auto;           /* botón siempre abajo */
+  align-self: flex-start;
+}
+
+/* (Opcional) asegura que las celdas del grid estiren las tarjetas */
+.blog-list > .blog-card{
+  align-self: stretch;
 }
